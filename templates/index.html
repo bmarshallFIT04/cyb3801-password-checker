@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Password Security Checker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="{{ url_for('static', filename='script.js') }}"
+            defer></script>
+</head>
+<body>
+
+    <main class="container">
+        <h1>Password Security Checker</h1>
+
+        <p>Check your password for security risks.</p>
+
+        <label for="password">Enter Password:</label>
+
+        <div class="password-field">
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter a test password"
+                autocomplete="off"
+            >
+
+            <button type="button" id="togglePassword">
+                Show
+            </button>
+        </div>
+
+        <button id="checkPassword" type="button">
+            Check Password
+        </button>
+
+        <h2>Security Results</h2>
+
+        <div class="results">
+            <p>
+                Common Password Check:
+                <span id="common">Pending</span>
+            </p>
+
+            <p>
+                Injection Protection:
+                <span id="injection">Pending</span>
+            </p>
+
+            <p>
+                Compromised Password Check:
+                <span id="compromised">Pending</span>
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>
