@@ -45,7 +45,14 @@ checkButton.addEventListener("click", async () => {
         // Display the results in the HTML
         document.getElementById("common").textContent = results.common_password;
         document.getElementById("injection").textContent = results.injection_protection;
-        document.getElementById("compromised").textContent = results.compromised_password;
+
+        /*
+            Compromised Password Result
+        */
+        const compromised = document.getElementById("compromised");
+        compromised.textContent = results.compromised_password.message;
+        compromised.classList.toggle("safe", results.compromised_password.is_compromised === false);
+        compromised.classList.toggle("danger", results.compromised_password.is_compromised === true);
 
     } catch (error) {
         // Display error if the request fails

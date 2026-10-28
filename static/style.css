@@ -72,6 +72,17 @@ button:hover {
 }
 
 .results span {
+    display: block;
+    margin-top: 5px;
+    margin-left: 20px;
     font-weight: bold;
     color: #535d6d;
+}
+
+.results span.safe {
+    color: #1e8a30;
+}
+
+.results span.danger {
+    color: #cb2121;
 }
