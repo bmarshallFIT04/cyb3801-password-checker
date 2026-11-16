@@ -27,12 +27,12 @@ def check_compromised_password(password):
     if leak_count > 0:
         return result(
             True,
-            f"COMPROMISED - This password has appeared in {leak_count:,} "
+            f"COMPROMISED: This password has appeared in {leak_count:,} "
             "data breaches!"
         )
 
     # Password has not been found in any data breaches
-    return result(False, "Not found in any known data breaches.")
+    return result(False, "SAFE: Not found in any known data breaches.")
 
 # Get the number of times a password has appeared in data breaches
 def get_leak_count(password):
