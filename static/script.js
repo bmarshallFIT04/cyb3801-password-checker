@@ -46,6 +46,10 @@ checkButton.addEventListener("click", async () => {
         // Display the results in the HTML safely using .textContent (prevents DOM XSS)
         document.getElementById("common").textContent = results.common_password;
 
+        const injection = document.getElementById("injection");
+        injection.textContent = results.injection_protection;
+        injection.classList.toggle("safe", results.injection_protection.startsWith("SAFE:"));
+        injection.classList.toggle("danger", results.injection_protection.startsWith("WARNING") || results.injection_protection.startsWith("BLOCKED"));
         /*
             Compromised Password Result
         */
