@@ -34,17 +34,17 @@ checkButton.addEventListener("click", async () => {
             })
         });
 
-        // Check if the response had an error
-        if (!response.ok) {
-            throw new Error("Server error");
-        }
-
-        // Convert the response into a JS object
+        // Convert the response into a JS object first so validation errors can be read
         const results = await response.json();
 
-        // Display the results in the HTML
+        // Check if the response had a validation/server error (e.g., >128 chars or null bytes)
+        if (!response.ok) {
+            alert(results.error || "Invalid password input.");
+            return;
+        }
+
+        // Display the results in the HTML safely using .textContent (prevents DOM XSS)
         document.getElementById("common").textContent = results.common_password;
-        document.getElementById("injection").textContent = results.injection_protection;
 
         /*
             Compromised Password Result
