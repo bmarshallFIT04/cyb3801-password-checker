@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request
 
 # Import the security checks 
 from security.common_passwords import check_common_password
-from security.injection import check_injection
+from security.injection import check_injection, validate_input
 from security.compromised_passwords import check_compromised_password
 
 # Create Flask app and display the website
@@ -20,9 +20,11 @@ def check_password():
         return jsonify({"error": "Invalid request"}), 400
     
     password = data.get("password")
-    
-    if not isinstance(password, str) or not password:
-        return jsonify({"error": "Password is required"}), 400
+
+    # Gatekeeper validation FIRST (blocks empty, non-string, >128 chars, or null bytes)
+    is_valid, error_msg = validate_input(password)
+    if not is_valid:
+        return jsonify({"error": error_msg}), 400
 
     # Run the security checks implemented
     common_result = check_common_password(password)
