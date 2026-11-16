@@ -27,8 +27,8 @@ def check_password():
         return jsonify({"error": error_msg}), 400
 
     # Run the security checks implemented
-    common_result = check_common_password(password)
     injection_result = check_injection(password)
+    common_result = check_common_password(password)
     compromised_result = check_compromised_password(password)
 
     # Return results to the website
